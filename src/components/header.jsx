@@ -36,7 +36,10 @@ export default function Header() {
           </Typography>
           <Button color="inherit" onClick= {() =>{
               history.push('/')
-              localStorage.setItem("userData", JSON.stringify({'isloggedIn':false}))
+              let userData =localStorage.getItem("userData")
+
+              userData = JSON.parse(userData)
+              localStorage.setItem("userData", JSON.stringify({...userData,'isloggedIn':false}))
           }}>Logout</Button>
         </Toolbar>
       </AppBar>

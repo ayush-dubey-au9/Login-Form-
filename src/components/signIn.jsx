@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+ 
+import {useDispatch} from 'react-redux';
+import {userActionHelper,loginActionHelper} from '../redux/action/userAction';
 
 function Copyright() {
   return (
@@ -52,11 +55,30 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
 
 
   const [email,setemail] = useState('');
   const [password,setpassword] = useState('');
   const [error, seterror] = useState('');
+
+
+  useEffect(() => {
+    let userData =localStorage.getItem("userData")
+
+    userData = JSON.parse(userData)
+    
+    console.log('userData',userData)
+    dispatch(userActionHelper(userData))
+
+
+
+
+      
+
+  }, [])
+
+
 
 
 
@@ -127,14 +149,18 @@ export default function SignIn() {
               console.log('password',password)*/
 
               let userData =localStorage.getItem("userData")
-
+            
               userData = JSON.parse(userData)
 
               if(userData){
                 if(userData.email === email && userData.password === password){
                   seterror('')
                   localStorage.setItem("userData",JSON.stringify({...userData,"isloggedIn":true}))
+                  dispatch(loginActionHelper({"isloggedIn":true}))
+
+                  
                   history.push('/profile')
+
 
                 }
                 else {

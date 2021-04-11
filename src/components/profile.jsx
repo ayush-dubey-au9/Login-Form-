@@ -15,6 +15,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Header from "./header";
 
+import {useSelector, useDispatch} from 'react-redux';
+
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,6 +48,12 @@ const useStyles = makeStyles(theme => ({
 export default function Profile() {
     const classes = useStyles();
     const history = useHistory();
+    const isloggedIn = useSelector((store) => store.userRegister.isloggedIn);
+    console.log('islogin' ,isloggedIn)
+    // const dispatch = useDispatch();
+
+    
+
     
 
     const [firstname, setfirstname] = useState('')
