@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Header from "./header";
+import {userUpdateHelper} from '../redux/action/userAction';
 
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -50,7 +51,7 @@ export default function Profile() {
     const history = useHistory();
     const isloggedIn = useSelector((store) => store.userRegister.isloggedIn);
     console.log('islogin' ,isloggedIn)
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     
 
@@ -249,8 +250,10 @@ export default function Profile() {
                             console.log('address', Address)*/
 
 
-
+                            
                             localStorage.setItem("userData", JSON.stringify({ firstname, lastname, email, DateofBirth, PhoneNo, Address ,password,'isloggedIn': true}))
+                            
+                            dispatch(userUpdateHelper({firstname, lastname ,password,email,DateofBirth, PhoneNo, Address}))
 
                             setMessage('Profile is Updated Successfully')
 

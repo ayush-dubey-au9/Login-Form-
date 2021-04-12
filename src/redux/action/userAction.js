@@ -12,5 +12,12 @@ export const loginActionHelper = (loginData) => {
     }
 }
 
+export const userUpdateHelper = (updateData) => {
+    return {
+        type: "UPDATE_USER",
+        payload: updateData
+    }
+}
+
 
 

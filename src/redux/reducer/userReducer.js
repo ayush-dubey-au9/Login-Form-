@@ -22,18 +22,21 @@ const userReducerHelper = (state = initialState, action) => {
             
         case "LOGIN_USER":
             {
-            console.log('action',action)
 
             return {
                 ...state,
                 isloggedIn: true,
             }
             }
-        case "DELETE_USER":
+        case "UPDATE_USER":
+            {
             return {
-                ///dpo some logice
+                ...state,
+                    userData: action.payload
+
 
             }
+        }
         default:
             return state
     }

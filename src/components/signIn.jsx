@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
  
 import {useDispatch} from 'react-redux';
-import {userActionHelper,loginActionHelper} from '../redux/action/userAction';
+import {userUpdateHelper,loginActionHelper} from '../redux/action/userAction';
 
 function Copyright() {
   return (
@@ -69,7 +69,7 @@ export default function SignIn() {
     userData = JSON.parse(userData)
     
     console.log('userData',userData)
-    dispatch(userActionHelper(userData))
+    dispatch(userUpdateHelper(userData))
 
 
 
@@ -96,7 +96,7 @@ export default function SignIn() {
         <form className={classes.form} noValidate>
 
           <TextField    onChange = {(e) => { 
-                              seterror('')
+            seterror('')
            setemail(e.target.value)
           }}
 
